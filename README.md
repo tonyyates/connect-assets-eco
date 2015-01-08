@@ -1,4 +1,4 @@
-# connect-assets-eco
+# connect-assets-eco-eco
 
 [![Build Status](https://travis-ci.org/adunkman/connect-assets.png)](https://travis-ci.org/adunkman/connect-assets)
 
@@ -19,13 +19,14 @@ connect-assets can:
 8. Preprocess `style.css.ejs` and `script.js.ejs` with [EJS](http://embeddedjs.com/) — just append `.ejs` to any file.
 8. Serve files with a cache-control token and use a far-future expires header for maximum efficiency.
 9. Avoid redundant git diffs by storing compiled `.js` and `.css` files in memory rather than writing them to the disk when in development.
+10. Added Serve `.jst.eco` as compiled JavaScript functions.
 
 ## How do I use it?
 
 First, install it in your project's directory:
 
 ```shell
-npm install connect-assets
+npm install connect-assets-eco
 ```
 
 Also install any specific compilers you'll need, e.g.:
@@ -40,17 +41,19 @@ npm install jade
 npm install ejs
 ```
 
+No need to install eco though as it's a dependency, if you don't need it then I would use connect-assets and not bother with this implementation
+
 Then add this line to your app's configuration:
 
 ```javascript
-app.use(require("connect-assets")());
+app.use(require("connect-assets-eco")());
 ```
 
 Finally, create an `assets` directory in your project and throw all assets compiled into JavaScript into `/assets/js` and all assets compiled into CSS into `/assets/css`.
 
 ### Markup functions
 
-connect-assets provides three global functions named `js`, `css`, and `assetPath`. Use them in your views. They return the HTML markup needed to include the most recent version of your assets (or, the path to the asset), taking advantage of caching when available. For instance, in a [Jade template](http://jade-lang.com/), the code
+connect-assets-eco provides three global functions named `js`, `css`, and `assetPath`. Use them in your views. They return the HTML markup needed to include the most recent version of your assets (or, the path to the asset), taking advantage of caching when available. For instance, in a [Jade template](http://jade-lang.com/), the code
 
 ```
 != css("normalize")
@@ -97,7 +100,7 @@ In JavaScript:
 When you do so, and point the `js` function at that file, two things can happen:
 
 1. By default, you'll get multiple `<script>` tags out, in an order that gives you all of your dependencies.
-2. If you passed the `build: true` option to connect-assets (enabled by default when `env == 'production'`), you'll just get a single tag, wich will point to a JavaScript file that encompasses the target's entire dependency graph—compiled, concatenated, and minified (with [UglifyJS](https://github.com/mishoo/UglifyJS)).
+2. If you passed the `build: true` option to connect-assets-eco (enabled by default when `env == 'production'`), you'll just get a single tag, wich will point to a JavaScript file that encompasses the target's entire dependency graph—compiled, concatenated, and minified (with [UglifyJS](https://github.com/mishoo/UglifyJS)).
 
 If you want to bring in a whole folder of scripts, use `//= require_tree dir` instead of `//= require file`.
 
@@ -105,7 +108,7 @@ See [Mincer](https://github.com/nodeca/mincer) for more information.
 
 ## Options
 
-If you like, you can pass any of these options to the function returned by `require('connect-assets')`:
+If you like, you can pass any of these options to the function returned by `require('connect-assets-eco')`:
 
 Option        | Default Value                   | Description
 --------------|---------------------------------|-------------------------------
@@ -121,15 +124,15 @@ gzip          | false                           | Should assets have gzipped cop
 
 ## Serving Assets from a CDN
 
-connect-assets includes a command-line utility, `connect-assets`, which can be used to precompile assets on your filesystem (which you can then upload to your CDN of choice). From your application directory, you can execute it with `./node_modules/.bin/connect-assets [options]`.
+connect-assets-eco includes a command-line utility, `connect-assets-eco`, which can be used to precompile assets on your filesystem (which you can then upload to your CDN of choice). From your application directory, you can execute it with `./node_modules/.bin/connect-assets-eco [options]`.
 
 ```
-Usage: connect-assets [-h] [-v] [-gz] [-i [DIRECTORY [DIRECTORY ...]]]
+Usage: connect-assets-eco [-h] [-v] [-gz] [-i [DIRECTORY [DIRECTORY ...]]]
                       [-c [FILE [FILE ...]]] [-o DIRECTORY]
 
 Precompiles assets supplied into their production-ready form, ready for
 upload to a CDN or static file server. The generated manifest.json is all
-that is required on your application server if connect-assets is properly
+that is required on your application server if connect-assets-eco is properly
 configured.
 
 Optional arguments:
@@ -159,4 +162,4 @@ Optional arguments:
 
 Follows in the footsteps of sstephenson's [Sprockets](https://github.com/sstephenson/sprockets), through the [Mincer](https://github.com/nodeca/mincer) project.
 
-Take a look at the [contributors](https://github.com/adunkman/connect-assets/contributors) who make this project possible.
+Take a look at the [contributors](https://github.com/adunkman/connect-assets-eco/contributors) who make this project possible.
