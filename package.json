@@ -1,11 +1,11 @@
 {
-  "name": "connect-assets",
+  "name": "connect-assets-eco",
   "version": "4.3.3",
   "author": {
-    "name": "Andrew Dunkman",
-    "email": "andrew@dunkman.org"
+    "name": "Tony Yates",
+    "email": "Tony Yates"
   },
-  "description": "A Rails-like asset pipeline for Connect",
+  "description": "A Rails-like asset pipeline for Connect with ECO support",
   "contributors": [
     {
       "name": "Trevor Burnham",
@@ -23,11 +23,15 @@
     {
       "name": "Blake VanLandingham",
       "email": "blakevanlan@gmail.com"
-    }
+    },
+    {
+      "name": "Tony Yates",
+      "email": "tonyyates@gmail.com"
+    },
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/adunkman/connect-assets.git"
+    "url": "https://github.com/tonyyates/connect-assets-eco.git"
   },
   "engines": {
     "node": ">=0.10.0"
