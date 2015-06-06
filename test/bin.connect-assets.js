@@ -1,10 +1,10 @@
 var expect = require("expect.js");
 var mocha = require("mocha");
-var bin = require("../bin/connect-assets");
+var bin = require("../bin/connect-assets-eco");
 var rmrf = require("./testHelpers/rmrf");
 var fs = require("fs");
 
-describe("connect-assets command-line interface", function () {
+describe("connect-assets-eco command-line interface", function () {
   beforeEach(function () {
     var log = "";
 
@@ -18,7 +18,7 @@ describe("connect-assets command-line interface", function () {
 
   it("compiles the assets out to disk", function (done) {
     var argv = process.argv;
-    process.argv = "node connect-assets -i test/assets/js -i test/assets/css".split(" ");
+    process.argv = "node connect-assets-eco -i test/assets/js -i test/assets/css".split(" ");
 
     bin.execute(this.logger, function () {
       process.argv = argv;
@@ -30,7 +30,7 @@ describe("connect-assets command-line interface", function () {
     var logger = this.logger;
     var argv = process.argv;
     var dir = "builtAssets";
-    process.argv = "node connect-assets -i test/assets/js -i test/assets/css".split(" ");
+    process.argv = "node connect-assets-eco -i test/assets/js -i test/assets/css".split(" ");
 
     bin.execute(this.logger, function (manifest) {
       process.argv = argv;
@@ -46,7 +46,7 @@ describe("connect-assets command-line interface", function () {
 
   it("compiles only those listed in --compile", function (done) {
     var argv = process.argv;
-    process.argv = "node connect-assets -i test/assets/js -i test/assets/css -c blank.js".split(" ");
+    process.argv = "node connect-assets-eco -i test/assets/js -i test/assets/css -c blank.js".split(" ");
 
     bin.execute(this.logger, function () {
       process.argv = argv;
@@ -59,7 +59,7 @@ describe("connect-assets command-line interface", function () {
 
   it("generates a manifest.json", function (done) {
     var argv = process.argv;
-    process.argv = "node connect-assets -i test/assets/js -i test/assets/css".split(" ");
+    process.argv = "node connect-assets-eco -i test/assets/js -i test/assets/css".split(" ");
 
     bin.execute(this.logger, function () {
       process.argv = argv;
@@ -72,7 +72,7 @@ describe("connect-assets command-line interface", function () {
   it("generates gzipped files", function (done) {
     var argv = process.argv;
     var dir = "builtAssets";
-    process.argv = "node connect-assets -gz -i test/assets/js -i test/assets/css".split(" ");
+    process.argv = "node connect-assets-eco -gz -i test/assets/js -i test/assets/css".split(" ");
 
     bin.execute(this.logger, function (manifest) {
       process.argv = argv;
@@ -86,7 +86,7 @@ describe("connect-assets command-line interface", function () {
   it("compiles with asset_path helper", function (done) {
     var argv = process.argv;
     var dir = "builtAssets";
-    process.argv = "node connect-assets -i test/assets/css -c asset-path-helper.css".split(" ");
+    process.argv = "node connect-assets-eco -i test/assets/css -c asset-path-helper.css".split(" ");
 
     bin.execute(this.logger, function (manifest) {
       process.argv = argv;
@@ -101,7 +101,7 @@ describe("connect-assets command-line interface", function () {
   it("compiles with asset_path helper with servePath option defined", function (done) {
     var argv = process.argv;
     var dir = "builtAssets";
-    process.argv = "node connect-assets -i test/assets/css -c asset-path-helper.css -s //cdn.example.com".split(" ");
+    process.argv = "node connect-assets-eco -i test/assets/css -c asset-path-helper.css -s //cdn.example.com".split(" ");
 
     bin.execute(this.logger, function (manifest) {
       process.argv = argv;

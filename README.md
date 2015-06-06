@@ -1,12 +1,10 @@
 # connect-assets-eco-eco
 
-[![Build Status](https://travis-ci.org/adunkman/connect-assets.png)](https://travis-ci.org/adunkman/connect-assets)
-
 Transparent file compilation and dependency management for Node’s [connect](https://github.com/senchalabs/connect) framework in the spirit of the Rails 3.1 asset pipeline.
 
 ## What can it do?
 
-connect-assets can:
+connect-assets-eco can:
 
 1. Serve `.js.coffee` ([CoffeeScript](http://coffeescript.org)) files as compiled `.js`
 2. Concatenate `.js.coffee` and `.js` together.

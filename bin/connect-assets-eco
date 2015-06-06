@@ -2,11 +2,11 @@
 
 var ArgumentParser = require("argparse").ArgumentParser;
 var Assets = require("../lib/assets");
-var mincer = require("mincer");
+var mincer = require("mincer-eco");
 
 var initialize = exports.initialize = function () {
   var cli = new ArgumentParser({
-    prog: "connect-assets",
+    prog: "connect-assets-eco",
     version: require("../package.json").version,
     addHelp: true,
     description: "Precompiles assets supplied into their production-ready " +
