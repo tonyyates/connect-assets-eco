@@ -10,12 +10,12 @@ describe("serveAsset headers", function () {
     var ctx = this;
     var app = this.app = connect().use(assets({
       paths: [ "test/assets/js", "test/assets/css" ],
-      helperContext: ctx
+      helperContext: ctx,
+      fingerprinting: true
     }));
 
     app.listen(function () {
-      var address = this.address();
-      ctx.host = "http://" + address.address + ":" + address.port;
+      ctx.host = "http://localhost:" + this.address().port;
       done();
     });
   });

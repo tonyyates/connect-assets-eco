@@ -1,8 +1,9 @@
 {
-  "name": "connect-assets-eco",
-  "version": "4.3.3",
-  "author": "Tony Yates <tonyyates@gmail.com>",
+  "name": "connect-assets",
+  "version": "5.1.0",
+  "author": "Andrew Dunkman <andrew@dunkman.org>",
   "description": "A Rails-like asset pipeline for Connect",
+  "license": "MIT",
   "contributors": [
     {
       "name": "Trevor Burnham",
@@ -20,36 +21,32 @@
     {
       "name": "Blake VanLandingham",
       "email": "blakevanlan@gmail.com"
-    },
-    {
-      "name": "Tony Yates",
-      "email": "tonyyates@gmail.com"
     }
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/tonyyates/connect-assets-eco.git"
+    "url": "https://github.com/adunkman/connect-assets.git"
   },
   "engines": {
     "node": ">=0.10.0"
   },
   "main": "index.js",
   "bin": {
-    "connect-assets-eco": "bin/connect-assets-eco"
+    "connect-assets": "bin/connect-assets"
   },
   "dependencies": {
-    "argparse": "0.1.15",
-    "csswring": "1.3.0",
-    "mincer": "^1.2.2",
-    "mincer-eco": "0.0.4",
-    "uglify-js": "2.4.15"
+    "argparse": "1.0.2",
+    "csswring": "3.0.5",
+    "mime": "1.3.4",
+    "mincer-eco": "git+https://github.com/tonyyates/mincer-eco.git",
+    "uglify-js": "2.4.23"
   },
   "devDependencies": {
-    "mocha": "1.21.4",
-    "blanket": "1.1.6",
+    "mocha": "2.2.5",
+    "blanket": "1.1.7",
     "expect.js": "0.3.1",
     "travis-cov": "0.2.5",
-    "connect": "3.2.0",
+    "connect": "3.4.0",
     "ejs": "1.0.0"
   },
   "config": {

@@ -1,11 +1,12 @@
 var url = require("url");
 var fs = require("fs");
+var Mincer = require("mincer");
 var Assets = require("./lib/assets");
 
-var connectAssets = module.exports = function (options) {
+var connectAssets = module.exports = function (options, configureCallback) {
   options = parseOptions(options || {});
 
-  var assets = new Assets(options);
+  var assets = new Assets(Mincer, options);
   var compilationComplete = false;
   var compilationError;
   var waiting = [];
@@ -13,6 +14,10 @@ var connectAssets = module.exports = function (options) {
   options.helperContext.css = assets.helper(tagWriters.css, "css");
   options.helperContext.js = assets.helper(tagWriters.js, "js");
   options.helperContext.assetPath = assets.helper(tagWriters.noop);
+
+  if (configureCallback) {
+    configureCallback(assets);
+  }
 
   assets.compile(function (err) {
     if (err) { compilationError = err; }
@@ -51,20 +56,26 @@ var connectAssets = module.exports = function (options) {
   return middleware;
 };
 
+module.exports.Mincer = Mincer
+
 var parseOptions = module.exports._parseOptions = function (options) {
   var isProduction = process.env.NODE_ENV === "production";
   var isDevelopment = !isProduction;
+  var servePath = (options.servePath || "assets");
+  var servePathPathname = parseUrl(servePath).pathname || "/";
 
   options.paths = arrayify(options.paths || options.src || [ "assets/js", "assets/css" ]);
   options.helperContext = options.helperContext || global;
-  options.servePath = (options.servePath || "assets").replace(/^\//, "").replace(/\/$/, "");
-  options.localServePath = options.localServePath || url.parse(options.servePath).pathname.replace(/^\//, "");
+  options.servePath = servePath.replace(/^\//, "").replace(/\/$/, "");
+  options.localServePath = options.localServePath || servePathPathname.replace(/^\//, "");
   options.precompile = arrayify(options.precompile || ["*.*"]);
   options.build = options.build != null ? options.build : isProduction;
   options.buildDir = options.buildDir != null ? options.buildDir : isDevelopment ? false : "builtAssets";
   options.compile = options.compile != null ? options.compile : true;
   options.compress = options.compress != null ? options.compress : isProduction;
+  options.sourceMaps = options.sourceMaps != null ? options.sourceMaps : isDevelopment;
   options.gzip = options.gzip != null ? options.gzip : false;
+  options.fingerprinting = options.fingerprinting != null ? options.fingerprinting : isProduction;
 
   if (options.buildDir.replace) {
     options.buildDir = options.buildDir.replace(/^\//, "").replace(/\/$/, "");
@@ -79,6 +90,12 @@ var arrayify = module.exports._arrayify = function (target) {
 
 var pasteAttr = function (attributes) {
   return !!attributes ? ' ' + attributes : '';
+};
+
+var parseUrl = function (string) {
+  var parseQueryString = false;
+  var allowUrlWithoutProtocol = true;
+  return url.parse(string, parseQueryString, allowUrlWithoutProtocol);
 };
 
 var tagWriters = {
