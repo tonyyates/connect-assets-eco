@@ -37,10 +37,10 @@
   "dependencies": {
     "argparse": "1.0.2",
     "csswring": "3.0.5",
-    "mime": "1.3.4",
+    "mime": ">=1.4.1",
     "mincer": "^1.4.1",
     "mincer-eco": "git+https://github.com/tonyyates/mincer-eco.git",
-    "uglify-js": "2.4.23"
+    "uglify-js": ">=2.6.0"
   },
   "devDependencies": {
     "mocha": "2.2.5",
@@ -48,7 +48,7 @@
     "expect.js": "0.3.1",
     "travis-cov": "0.2.5",
     "connect": "3.4.0",
-    "ejs": "1.0.0"
+    "ejs": ">=2.5.5"
   },
   "config": {
     "travis-cov": {
